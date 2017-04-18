@@ -1,4 +1,4 @@
-<div class="apidocDiv">
+<html><head></head><body><div class="apidocDiv">
 <style>
 /*csslint
 */
@@ -47,17 +47,10 @@
 }
 </style>
 <h1>api documentation for
-    <a
-
-        href="https://github.com/mpneuried/nodecache"
-
-    >node-cache (v4.1.1)</a>
+    <a href="https://github.com/mpneuried/nodecache">node-cache (v4.1.1)</a>
 </h1>
 <h4>Simple and fast NodeJS internal caching. Node internal in memory cache like memcached.</h4>
-<div class="apidocSectionDiv"><a
-    href="#apidoc.tableOfContents"
-    id="apidoc.tableOfContents"
-><h1>table of contents</h1></a><ol>
+<div class="apidocSectionDiv"><a href="#apidoc.tableOfContents" id="apidoc.tableOfContents"><h1>table of contents</h1></a><ol>
 
     <li class="apidocModuleLi"><a href="#apidoc.module.node-cache">module node-cache</a><ol>
 
@@ -453,7 +446,7 @@
     ksize: 0,
     vsize: 0
   };
-  this.validKeyTypes = [&#x22;string&#x22;, &#x22;number&#x22;];
+  this.validKeyTypes = ["string", "number"];
   this._checkData();
   return;
 }</pre></li>
@@ -488,8 +481,8 @@
   this.domain = null;
   if (EventEmitter.usingDomains) {
     // if there is an active domain, then attach to it.
-    domain = domain || require(&#x27;domain&#x27;);
-    if (domain.active &#x26;&#x26; !(this instanceof domain.Domain)) {
+    domain = domain || require('domain');
+    if (domain.active &amp;&amp; !(this instanceof domain.Domain)) {
       this.domain = domain.active;
     }
   }
@@ -514,7 +507,7 @@
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">listenerCount = function (emitter, type) {
-  if (typeof emitter.listenerCount === &#x27;function&#x27;) {
+  if (typeof emitter.listenerCount === 'function') {
     return emitter.listenerCount(type);
   } else {
     return listenerCount.call(emitter, type);
@@ -569,7 +562,7 @@
     ksize: 0,
     vsize: 0
   };
-  this.validKeyTypes = [&#x22;string&#x22;, &#x22;number&#x22;];
+  this.validKeyTypes = ["string", "number"];
   this._checkData();
   return;
 }</pre></li>
@@ -637,7 +630,7 @@
     ksize: 0,
     vsize: 0
   };
-  this.validKeyTypes = [&#x22;string&#x22;, &#x22;number&#x22;];
+  this.validKeyTypes = ["string", "number"];
   this._checkData();
   return;
 }</pre></li>
@@ -672,8 +665,8 @@
   this.domain = null;
   if (EventEmitter.usingDomains) {
     // if there is an active domain, then attach to it.
-    domain = domain || require(&#x27;domain&#x27;);
-    if (domain.active &#x26;&#x26; !(this instanceof domain.Domain)) {
+    domain = domain || require('domain');
+    if (domain.active &amp;&amp; !(this instanceof domain.Domain)) {
       this.domain = domain.active;
     }
   }
@@ -698,7 +691,7 @@
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">listenerCount = function (emitter, type) {
-  if (typeof emitter.listenerCount === &#x27;function&#x27;) {
+  if (typeof emitter.listenerCount === 'function') {
     return emitter.listenerCount(type);
   } else {
     return listenerCount.call(emitter, type);
@@ -728,9 +721,9 @@
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">_check = function (key, data) {
-  if (data.t !== 0 &#x26;&#x26; data.t &#x3c; Date.now()) {
+  if (data.t !== 0 &amp;&amp; data.t &lt; Date.now()) {
     this.del(key);
-    this.emit(&#x22;expired&#x22;, key, this._unwrap(data));
+    this.emit("expired", key, this._unwrap(data));
     return false;
   } else {
     return true;
@@ -758,7 +751,7 @@
     value = ref[key];
     this._check(key, value);
   }
-  if (startPeriod &#x26;&#x26; this.options.checkperiod &#x3e; 0) {
+  if (startPeriod &amp;&amp; this.options.checkperiod &gt; 0) {
     this.checkTimeout = setTimeout(this._checkData, this.options.checkperiod * 1000, startPeriod);
     if (this.checkTimeout.unref != null) {
       this.checkTimeout.unref();
@@ -785,9 +778,9 @@
   error = new Error();
   error.name = type;
   error.errorcode = type;
-  error.message = this.ERRORS[type] != null ? this.ERRORS[type](data) : &#x22;-&#x22;;
+  error.message = this.ERRORS[type] != null ? this.ERRORS[type](data) : "-";
   error.data = data;
-  if (cb &#x26;&#x26; _isFunction(cb)) {
+  if (cb &amp;&amp; _isFunction(cb)) {
     cb(error, null);
   } else {
     return error;
@@ -870,8 +863,8 @@
     <ul>
     <li>description and source-code<pre class="apidocCodePre">_isInvalidKey = function (key) {
   var ref;
-  if (ref = typeof key, indexOf.call(this.validKeyTypes, ref) &#x3c; 0) {
-    return this._error(&#x22;EKEYTYPE&#x22;, {
+  if (ref = typeof key, indexOf.call(this.validKeyTypes, ref) &lt; 0) {
+    return this._error("EKEYTYPE", {
       type: typeof key
     });
   }
@@ -1039,7 +1032,7 @@ myCache.close();
     ksize: 0,
     vsize: 0
   };
-  this.validKeyTypes = [&#x22;string&#x22;, &#x22;number&#x22;];
+  this.validKeyTypes = ["string", "number"];
   this._checkData();
   return;
 }</pre></li>
@@ -1061,7 +1054,7 @@ myCache.close();
     keys = [keys];
   }
   delCount = 0;
-  for (i = 0, len = keys.length; i &#x3c; len; i++) {
+  for (i = 0, len = keys.length; i &lt; len; i++) {
     key = keys[i];
     if ((err = this._isInvalidKey(key)) != null) {
       if (cb != null) {
@@ -1078,7 +1071,7 @@ myCache.close();
       delCount++;
       oldVal = this.data[key];
       delete this.data[key];
-      this.emit(&#x22;del&#x22;, key, oldVal.v);
+      this.emit("del", key, oldVal.v);
     } else {
       this.stats.misses++;
     }
@@ -1092,7 +1085,7 @@ myCache.close();
 
 **Since `2.0.0`**:
 
-The method for mget changed from `.get( [ &#x22;a&#x22;, &#x22;b&#x22; ] )` to `.mget( [ &#x22;a&#x22;, &#x22;b&#x22; ] )`
+The method for mget changed from `.get( [ "a", "b" ] )` to `.mget( [ "a", "b" ] )`
 
 ## Delete a key (DEL):
 
@@ -1101,7 +1094,7 @@ The method for mget changed from `.get( [ &#x22;a&#x22;, &#x22;b&#x22; ] )` to `
 Delete a key. Returns the number of deleted entries. A delete will never fail.
 
 ```js
-myCache.del( &#x22;myKey&#x22;, function( err, count ){
+myCache.del( "myKey", function( err, count ){
 if( !err ){
   console.log( count ); // 1
 ...</pre></li>
@@ -1130,7 +1123,7 @@ if( !err ){
   };
   this._killCheckPeriod();
   this._checkData(_startPeriod);
-  this.emit(&#x22;flush&#x22;);
+  this.emit("flush");
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
     vsize: 0    // global value size count
@@ -1162,7 +1155,7 @@ myCache.getStats();
     <ul>
     <li>description and source-code<pre class="apidocCodePre">get = function (key, cb, errorOnMissing) {
   var _err, _ret, err;
-  if (typeof cb === &#x22;boolean&#x22; &#x26;&#x26; arguments.length === 2) {
+  if (typeof cb === "boolean" &amp;&amp; arguments.length === 2) {
     errorOnMissing = cb;
     cb = void 0;
   }
@@ -1174,7 +1167,7 @@ myCache.getStats();
       throw err;
     }
   }
-  if ((this.data[key] != null) &#x26;&#x26; this._check(key, this.data[key])) {
+  if ((this.data[key] != null) &amp;&amp; this._check(key, this.data[key])) {
     this.stats.hits++;
     _ret = this._unwrap(this.data[key]);
     if (cb != null) {
@@ -1184,7 +1177,7 @@ myCache.getStats();
   } else {
     this.stats.misses++;
     if (this.options.errorOnMissing || errorOnMissing) {
-      _err = this._error(&#x22;ENOTFOUND&#x22;, {
+      _err = this._error("ENOTFOUND", {
         key: key
       }, cb);
       if (_err != null) {
@@ -1200,7 +1193,7 @@ myCache.getStats();
   }
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-success = myCache.set( &#x22;myKey&#x22;, obj, 10000 );
+success = myCache.set( "myKey", obj, 10000 );
 // true
 ```
 
@@ -1214,7 +1207,7 @@ Returns a `undefined` if not found or expired.
 If the value was found it returns an object with the `key` `value` pair.
 
 ```js
-myCache.get( &#x22;myKey&#x22;, function( err, value ){
+myCache.get( "myKey", function( err, value ){
 ...</pre></li>
     </ul>
 
@@ -1232,7 +1225,7 @@ myCache.get( &#x22;myKey&#x22;, function( err, value ){
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 console.log( mykeys );
-// [ &#x22;all&#x22;, &#x22;my&#x22;, &#x22;keys&#x22;, &#x22;foo&#x22;, &#x22;bar&#x22; ]
+// [ "all", "my", "keys", "foo", "bar" ]
 
 ```
 
@@ -1274,7 +1267,7 @@ myCache.getStats();
       throw err;
     }
   }
-  if ((this.data[key] != null) &#x26;&#x26; this._check(key, this.data[key])) {
+  if ((this.data[key] != null) &amp;&amp; this._check(key, this.data[key])) {
     _ttl = this.data[key].t;
     if (cb != null) {
       cb(null, _ttl);
@@ -1323,7 +1316,7 @@ You will get:
   return _keys;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-ts = myCache.getTtl( &#x22;unknownKey&#x22; )
+ts = myCache.getTtl( "unknownKey" )
 // ts = undefined
 
 ```
@@ -1353,14 +1346,14 @@ if( !err ){
     <li>description and source-code<pre class="apidocCodePre">mget = function (keys, cb) {
   var _err, err, i, key, len, oRet;
   if (!_isArray(keys)) {
-    _err = this._error(&#x22;EKEYSTYPE&#x22;);
+    _err = this._error("EKEYSTYPE");
     if (cb != null) {
       cb(_err);
     }
     return _err;
   }
   oRet = {};
-  for (i = 0, len = keys.length; i &#x3c; len; i++) {
+  for (i = 0, len = keys.length; i &lt; len; i++) {
     key = keys[i];
     if ((err = this._isInvalidKey(key)) != null) {
       if (cb != null) {
@@ -1370,7 +1363,7 @@ if( !err ){
         throw err;
       }
     }
-    if ((this.data[key] != null) &#x26;&#x26; this._check(key, this.data[key])) {
+    if ((this.data[key] != null) &amp;&amp; this._check(key, this.data[key])) {
       this.stats.hits++;
       oRet[key] = this._unwrap(this.data[key]);
     } else {
@@ -1397,7 +1390,7 @@ Returns an empty object `{}` if not found or expired.
 If the value was found it returns an object with the `key` `value` pair.
 
 ```js
-myCache.mget( [ &#x22;myKeyA&#x22;, &#x22;myKeyB&#x22; ], function( err, value ){
+myCache.mget( [ "myKeyA", "myKeyB" ], function( err, value ){
 ...</pre></li>
     </ul>
 
@@ -1412,10 +1405,10 @@ myCache.mget( [ &#x22;myKeyA&#x22;, &#x22;myKeyB&#x22; ], function( err, value )
     <ul>
     <li>description and source-code<pre class="apidocCodePre">set = function (key, value, ttl, cb) {
   var err, existent;
-  if (this.options.forceString &#x26;&#x26; !_isString(value)) {
+  if (this.options.forceString &amp;&amp; !_isString(value)) {
     value = JSON.stringify(value);
   }
-  if (arguments.length === 3 &#x26;&#x26; _isFunction(ttl)) {
+  if (arguments.length === 3 &amp;&amp; _isFunction(ttl)) {
     cb = ttl;
     ttl = this.options.stdTTL;
   }
@@ -1438,7 +1431,7 @@ myCache.mget( [ &#x22;myKeyA&#x22;, &#x22;myKeyB&#x22; ], function( err, value )
     this.stats.ksize += this._getKeyLength(key);
     this.stats.keys++;
   }
-  this.emit(&#x22;set&#x22;, key, value);
+  this.emit("set", key, value);
   if (cb != null) {
     cb(null, true);
   }
@@ -1446,7 +1439,7 @@ myCache.mget( [ &#x22;myKeyA&#x22;, &#x22;myKeyB&#x22; ], function( err, value )
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 ```js
-const NodeCache = require( &#x22;node-cache&#x22; );
+const NodeCache = require( "node-cache" );
 const myCache = new NodeCache( { stdTTL: 100, checkperiod: 120 } );
 ```
 
@@ -1458,8 +1451,8 @@ Sets a `key` `value` pair. It is possible to define a `ttl` (in seconds).
 Returns `true` on success.
 
 ```js
-obj = { my: &#x22;Special&#x22;, variable: 42 };
-myCache.set( &#x22;myKey&#x22;, obj, function( err, success ){
+obj = { my: "Special", variable: 42 };
+myCache.set( "myKey", obj, function( err, success ){
 ...</pre></li>
     </ul>
 
@@ -1474,14 +1467,14 @@ myCache.set( &#x22;myKey&#x22;, obj, function( err, success ){
     <ul>
     <li>description and source-code<pre class="apidocCodePre">ttl = function () {
   var arg, args, cb, err, i, key, len, ttl;
-  key = arguments[0], args = 2 &#x3c;= arguments.length ? slice.call(arguments, 1) : [];
-  for (i = 0, len = args.length; i &#x3c; len; i++) {
+  key = arguments[0], args = 2 &lt;= arguments.length ? slice.call(arguments, 1) : [];
+  for (i = 0, len = args.length; i &lt; len; i++) {
     arg = args[i];
     switch (typeof arg) {
-      case &#x22;number&#x22;:
+      case "number":
         ttl = arg;
         break;
-      case &#x22;function&#x22;:
+      case "function":
         cb = arg;
     }
   }
@@ -1500,8 +1493,8 @@ myCache.set( &#x22;myKey&#x22;, obj, function( err, success ){
       throw err;
     }
   }
-  if ((this.data[key] != null) &#x26;&#x26; this._check(key, this.data[key])) {
-    if (ttl &#x3e;= 0) {
+  if ((this.data[key] != null) &amp;&amp; this._check(key, this.data[key])) {
+    if (ttl &gt;= 0) {
       this.data[key] = this._wrap(this.data[key].v, ttl, false);
     } else {
       this.del(key);
@@ -1519,7 +1512,7 @@ myCache.set( &#x22;myKey&#x22;, obj, function( err, success ){
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 
-value = myCache.del( [ &#x22;A&#x22;, &#x22;B&#x22;, &#x22;C&#x22;, &#x22;D&#x22; ] );
+value = myCache.del( [ "A", "B", "C", "D" ] );
 // 1 - because A, B and C not exists
 ```
 
@@ -1528,9 +1521,9 @@ value = myCache.del( [ &#x22;A&#x22;, &#x22;B&#x22;, &#x22;C&#x22;, &#x22;D&#x22
 `myCache.<span class="apidocCodeKeywordSpan">ttl</span>( key, ttl, [callback] )`
 
 Redefine the ttl of a key. Returns true if the key has been found and changed. Otherwise returns false.
-If the ttl-argument isn&#x27;t passed the default-TTL will be used.
+If the ttl-argument isn't passed the default-TTL will be used.
 
-The key will be deleted when passing in a `ttl &#x3c; 0`.
+The key will be deleted when passing in a `ttl &lt; 0`.
 
 ```js
 ...</pre></li>
@@ -1547,3 +1540,4 @@ The key will be deleted when passing in a `ttl &#x3c; 0`.
     ]
 </div>
 </div>
+</body></html>
