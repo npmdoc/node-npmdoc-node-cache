@@ -736,7 +736,23 @@
     return true;
   }
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  if (cb != null) {
+    cb(err);
+    return;
+  } else {
+    throw err;
+  }
+}
+if ((this.data[key] != null) &#x26;&#x26; this.<span class="apidocCodeKeywordSpan">_check</span>(key, this.data[key])) {
+  this.stats.hits++;
+  _ret = this._unwrap(this.data[key]);
+  if (cb != null) {
+    cb(null, _ret);
+  }
+  return _ret;
+} else {
+...</pre></li>
     </ul>
 
 
@@ -765,7 +781,23 @@
     }
   }
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    hits: 0,
+    misses: 0,
+    keys: 0,
+    ksize: 0,
+    vsize: 0
+  };
+  this.validKeyTypes = [&#x22;string&#x22;, &#x22;number&#x22;];
+  this.<span class="apidocCodeKeywordSpan">_checkData</span>();
+  return;
+}
+
+NodeCache.prototype.get = function(key, cb, errorOnMissing) {
+  var _err, _ret, err;
+  if (typeof cb === &#x22;boolean&#x22; &#x26;&#x26; arguments.length === 2) {
+    errorOnMissing = cb;
+...</pre></li>
     </ul>
 
 
@@ -793,7 +825,23 @@
     return error;
   }
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  if (cb != null) {
+    cb(null, _ret);
+  }
+  return _ret;
+} else {
+  this.stats.misses++;
+  if (this.options.errorOnMissing || errorOnMissing) {
+    _err = this.<span class="apidocCodeKeywordSpan">_error</span>(&#x22;ENOTFOUND&#x22;, {
+      key: key
+    }, cb);
+    if (_err != null) {
+      throw _err;
+    }
+    return;
+  } else {
+...</pre></li>
     </ul>
 
 
@@ -808,7 +856,23 @@
     <li>description and source-code<pre class="apidocCodePre">_getKeyLength = function (key) {
   return key.length;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+if (this.data[key]) {
+  existent = true;
+  this.stats.vsize -= this._getValLength(this._unwrap(this.data[key], false));
+}
+this.data[key] = this._wrap(value, ttl);
+this.stats.vsize += this._getValLength(value);
+if (!existent) {
+  this.stats.ksize += this.<span class="apidocCodeKeywordSpan">_getKeyLength</span>(key);
+  this.stats.keys++;
+}
+this.emit(&#x22;set&#x22;, key, value);
+if (cb != null) {
+  cb(null, true);
+}
+return true;
+...</pre></li>
     </ul>
 
 
@@ -835,7 +899,23 @@
     return 0;
   }
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  } else {
+    throw err;
+  }
+}
+existent = false;
+if (this.data[key]) {
+  existent = true;
+  this.stats.vsize -= this.<span class="apidocCodeKeywordSpan">_getValLength</span>(this._unwrap(this.data[key], false));
+}
+this.data[key] = this._wrap(value, ttl);
+this.stats.vsize += this._getValLength(value);
+if (!existent) {
+  this.stats.ksize += this._getKeyLength(key);
+  this.stats.keys++;
+}
+...</pre></li>
     </ul>
 
 
@@ -856,7 +936,23 @@
     this.ERRORS[_errT] = _template(_errMsg);
   }
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+this.keys = bind(this.keys, this);
+this.getTtl = bind(this.getTtl, this);
+this.ttl = bind(this.ttl, this);
+this.del = bind(this.del, this);
+this.set = bind(this.set, this);
+this.mget = bind(this.mget, this);
+this.get = bind(this.get, this);
+this.<span class="apidocCodeKeywordSpan">_initErrors</span>();
+this.data = {};
+this.options = _assignIn({
+  forceString: false,
+  objectValueSize: 80,
+  arrayValueSize: 40,
+  stdTTL: 0,
+  checkperiod: 600,
+...</pre></li>
     </ul>
 
 
@@ -876,7 +972,23 @@
     });
   }
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+    NodeCache.prototype.get = function(key, cb, errorOnMissing) {
+var _err, _ret, err;
+if (typeof cb === &#x22;boolean&#x22; &#x26;&#x26; arguments.length === 2) {
+  errorOnMissing = cb;
+  cb = void 0;
+}
+if ((err = this.<span class="apidocCodeKeywordSpan">_isInvalidKey</span>(key)) != null) {
+  if (cb != null) {
+    cb(err);
+    return;
+  } else {
+    throw err;
+  }
+}
+...</pre></li>
     </ul>
 
 
@@ -893,7 +1005,23 @@
     return clearTimeout(this.checkTimeout);
   }
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  this.stats = {
+    hits: 0,
+    misses: 0,
+    keys: 0,
+    ksize: 0,
+    vsize: 0
+  };
+  this.<span class="apidocCodeKeywordSpan">_killCheckPeriod</span>();
+  this._checkData(_startPeriod);
+  this.emit(&#x22;flush&#x22;);
+};
+
+NodeCache.prototype.close = function() {
+  this._killCheckPeriod();
+};
+...</pre></li>
     </ul>
 
 
@@ -921,7 +1049,23 @@
   }
   return null;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    return;
+  } else {
+    throw err;
+  }
+}
+if ((this.data[key] != null) &#x26;&#x26; this._check(key, this.data[key])) {
+  this.stats.hits++;
+  _ret = this.<span class="apidocCodeKeywordSpan">_unwrap</span>(this.data[key]);
+  if (cb != null) {
+    cb(null, _ret);
+  }
+  return _ret;
+} else {
+  this.stats.misses++;
+  if (this.options.errorOnMissing || errorOnMissing) {
+...</pre></li>
     </ul>
 
 
@@ -960,7 +1104,23 @@
     v: asClone ? clone(value) : value
   };
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  }
+}
+existent = false;
+if (this.data[key]) {
+  existent = true;
+  this.stats.vsize -= this._getValLength(this._unwrap(this.data[key], false));
+}
+this.data[key] = this.<span class="apidocCodeKeywordSpan">_wrap</span>(value, ttl);
+this.stats.vsize += this._getValLength(value);
+if (!existent) {
+  this.stats.ksize += this._getKeyLength(key);
+  this.stats.keys++;
+}
+this.emit(&#x22;set&#x22;, key, value);
+if (cb != null) {
+...</pre></li>
     </ul>
 
 
