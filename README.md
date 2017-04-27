@@ -1,6 +1,6 @@
 # npmdoc-node-cache
 
-#### api documentation for  [node-cache (v4.1.1)](https://github.com/mpneuried/nodecache)  [![npm package](https://img.shields.io/npm/v/npmdoc-node-cache.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-node-cache) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-node-cache.svg)](https://travis-ci.org/npmdoc/node-npmdoc-node-cache)
+#### basic api documentation for  [node-cache (v4.1.1)](https://github.com/mpneuried/nodecache)  [![npm package](https://img.shields.io/npm/v/npmdoc-node-cache.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-node-cache) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-node-cache.svg)](https://travis-ci.org/npmdoc/node-npmdoc-node-cache)
 
 #### Simple and fast NodeJS internal caching. Node internal in memory cache like memcached.
 
@@ -101,7 +101,8 @@
         "memcached",
         "object"
     ],
-    "version": "4.1.1"
+    "version": "4.1.1",
+    "bin": {}
 }
 ```
 
